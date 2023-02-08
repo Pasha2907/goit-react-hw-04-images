@@ -5,7 +5,7 @@ import { Overlay, ModalWindow } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export function Modal(largeImage, tags, toggleModal) {
+export function Modal({ largeImage, tags, toggleModal }) {
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
