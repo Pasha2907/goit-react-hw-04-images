@@ -14,6 +14,7 @@ export function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(null);
   const [error, setError] = useState(null);
+  const [largeImage, setLargeImage] = useState('');
 
   useEffect(() => {
     const renderGallery = (name, page) => {
@@ -62,12 +63,9 @@ export function App() {
     setShowModal(!showModal);
   };
 
-  const openModal = id => {
-    const photo = gallery.find(photo => photo.id === id);
-    setShowModal({
-      largeImageURL: photo.largeImageURL,
-      tags: photo.tags,
-    });
+  const openModal = index => {
+    setShowModal(true);
+    setLargeImage(gallery[index].largeImageURL);
   };
 
   const nextPage = () => {
@@ -81,13 +79,7 @@ export function App() {
       {gallery.length !== 0 && (
         <ImageGallery gallery={gallery} openModal={openModal} />
       )}
-      {showModal && (
-        <Modal
-          toggleModal={toggleModal}
-          largeImageURL={showModal.largeImageURL}
-          tags={showModal.tags}
-        />
-      )}
+      {showModal && <Modal toggleModal={toggleModal} largeImage={largeImage} />}
       {isLoading && <Loader />}
       {gallery.length >= 12 && <Button nextPage={nextPage} />}
     </AppMain>

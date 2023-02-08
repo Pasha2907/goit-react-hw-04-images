@@ -5,7 +5,7 @@ import { Overlay, ModalWindow } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export function Modal(largeImageURL, tags, toggleModal) {
+export function Modal(largeImage, tags, toggleModal) {
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
@@ -26,7 +26,7 @@ export function Modal(largeImageURL, tags, toggleModal) {
   return createPortal(
     <Overlay onClick={handleBackdropClick}>
       <ModalWindow>
-        <img src={largeImageURL} alt={tags} />
+        <img src={largeImage} alt={tags} />
       </ModalWindow>
     </Overlay>,
     modalRoot
@@ -35,6 +35,6 @@ export function Modal(largeImageURL, tags, toggleModal) {
 
 Modal.propTypes = {
   toggleModal: PropTypes.func.isRequired,
-  largeImageURL: PropTypes.string.isRequired,
-  tags: PropTypes.string.isRequired,
+  largeImage: PropTypes.string.isRequired,
+  tags: PropTypes.string,
 };
